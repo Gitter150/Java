@@ -75,6 +75,10 @@ class List {
             curr = curr.next;
         }
         else while(curr != null) {
+            if(this.head.next == null) {
+                System.out.println("[ "+curr.data+" ]");
+                return;
+            }
             System.out.print(curr == this.tail? (curr.data) + " ]":(curr == this.head? ("[ "+curr.data +", "):(curr.data + ", ")));
             curr = curr.next;
         }
@@ -91,13 +95,39 @@ class List {
         if(this.tail == null) throw new NoSuchElementException("List is empty! Can't retrieve front element");
         return this.tail.data;
     }
+    void reverse() {
+        if(this.head == null) throw new NoSuchElementException("List is empty! Can't reverse an empty list.");
+        if(this.head.next == null) return;
+        Node prNode = null, curNode = this.head, nextNode;
+        this.tail = this.head;
+        while(curNode != null) {
+            nextNode = curNode.next;
+            curNode.next = prNode;
+            prNode = curNode;
+            curNode = nextNode;
+        }
+        this.head = prNode;
+    }
+    void empty() {
+        if(this.head == null) throw new NoSuchElementException("List is already empty!");
+        this.head = null;
+        this.tail = null;
+    }
 }
 
 public class linkedList {
     public static void main(String[] args) {
         List lst = new List();
-        for(int i=1;i<=5;i++) lst.push_back(i);
+        lst.push_back(0);
+        lst.push_back(6);
+        lst.push_back(7);
+        lst.push_back(9);
+        lst.push_back(8);
         lst.display();
+        lst.reverse();
+        lst.display();
+        System.out.println("The front element is: "+lst.peek_front());
+        System.out.println("The back element is: "+lst.peek_back());
         System.out.println("The length of the list is now "+lst.len());
     }
 }
