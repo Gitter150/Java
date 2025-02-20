@@ -125,7 +125,7 @@ public class linkedList {
         lst.push_back(8);
         lst.display();
         lst.reverse();
-        lst.display();
+        lst.display(true);
         System.out.println("The front element is: "+lst.peek_front());
         System.out.println("The back element is: "+lst.peek_back());
         System.out.println("The length of the list is now "+lst.len());
